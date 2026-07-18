@@ -110,6 +110,14 @@ For more information, see:
 - [Troubleshoot GitLab for Visual Studio](../../editor_extensions/visual_studio/visual_studio_troubleshooting.md).
 - [Troubleshoot the GitLab plugin for Neovim](../../editor_extensions/neovim/neovim_troubleshooting.md).
 
+| Stage       | Purpose                                                         |
+| ----------- | --------------------------------------------------------------- |
+| **prepare** | Installs Node.js dependencies with `npm ci`.                    |
+| **lint**    | Runs ESLint or another linter to catch syntax and style issues. |
+| **test**    | Executes automated tests (`npm test`).                          |
+| **build**   | Builds the production application (`npm run build`).            |
+| **package** | Compresses build artifacts into a deployable archive.           |
+| **deploy**  | Deploys the packaged application to the production environment. |
 
 Turn GitLab Duo on for all users, regardless of group or project settings.
 
