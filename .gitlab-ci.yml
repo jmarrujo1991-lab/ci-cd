@@ -1,66 +1,15 @@
-image: node:18
-
-stages:
-  - prepare
-  - lint
-  - test
-  - build
-  - package
-  - deploy
-
-prepare:
-  stage: prepare
-  script:
-    - npm ci
-  artifacts:
-    paths:
-      - node_modules/
-    expire_in: 1 hour
-
-lint:
-  stage: lint
-  script:
-    - npm run lint
-  dependencies:
-    - prepare
-
-unit-test:
-  stage: test
-  script:
-    - npm test
-  dependencies:
-    - prepare
-
-build:
+build-job:
   stage: build
   script:
-    - npm run build
-  dependencies:
-    - prepare
-  artifacts:
-    paths:
-      - dist/
-    expire_in: 1 week
+    - echo "Hello from your local machine, $GITLAB_USER_LOGIN!"
 
-package:
-  stage: package
+test-job:
+  stage: test
   script:
-    - mkdir -p package
-    - tar -czf package/application.tgz dist
-  dependencies:
-    - build
-  artifacts:
-    paths:
-      - package/application.tgz
-    expire_in: 1 week
+    - echo "Running tests locally on this runner..."
 
-deploy-production:
+deploy-prod:
   stage: deploy
   script:
-    - echo "Deploying application.tgz to production"
-  dependencies:
-    - package
-  environment:
-    name: production
-  only:
-    - main
+    - echo "Simulating production deployment from the $CI_COMMIT_BRANCH branch."
+  environment: production
